@@ -6,7 +6,6 @@ RUN apt-get update
 # says yes to everything
 RUN apt-get upgrade -y
 
-
 # the package manager to install all required packages
 # openssl is a toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols 
 # - to create/amanage SSL certificates
@@ -21,4 +20,8 @@ RUN mkdir -p /etc/nginx/ssl
 RUN openssl req -x509 -nodes 
     -subj "/C=NL/ST=Noord Holland/L=Amsterdam/O=42/OU=42/CN=domain_name.fr/UID=admin_name" \ 
     -out /etc/nginx/ssl/inception.certif \
-    -keyout /etc/nginx/ssl/inception.key \
+    -keyout /etc/nginx/ssl/inception.key
+
+COPY ./nginx.conf /etc/nginx/nginx.conf
+
+RUN mkdir -p /var/www/wordpress
