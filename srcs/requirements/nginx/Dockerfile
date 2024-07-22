@@ -25,3 +25,11 @@ RUN openssl req -x509 -nodes
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /var/www/wordpress
+
+# change owner for wordpress dir to www-data
+RUN chomn -R www-data:www-data /var/www/wordpress
+
+# when the container starts for Nginx web server
+#   -g to apply additional configuration globaly
+#   daemon off;: will make Nginx run in the foreground, which ensures that the container remains active as long as Nginx runs
+CMD ["nginx", "-g", "daemon off;"]
