@@ -16,7 +16,7 @@ RUN apt-get update
 RUN apt-get upgrade -y
 
 # installs all required packages
-RUN apt-get install -y mariadb-server
+RUN apt-get install mariadb-server -y
 
 # copies file from host to container
 COPY ./tools/create_mdb.sh /create_mdb.sh
