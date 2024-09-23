@@ -13,8 +13,8 @@ RUN apt-get upgrade -y
 RUN apt-get install -y curl php php7.4-pm php-mysql mariadb-client netcat
 
 # copies the script within the root of the container
-COPY ./wp_conf.sh /
+COPY ./tools/create_wp.sh /
 
-RUN chmod +x wp_conf.sh
+RUN chmod +x create_wp.sh
 
-ENTRYPOINT ["./wp_conf.sh"]
+ENTRYPOINT ["./create_wp.sh"]
