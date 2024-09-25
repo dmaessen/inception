@@ -22,12 +22,14 @@ RUN openssl req -x509 -nodes
     -out /etc/nginx/ssl/inception.crt \
     -keyout /etc/nginx/ssl/inception.key
 
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/nginx.conf /etc/nginx/nginx.d
 
-RUN mkdir -p /var/www/wordpress
+# RUN mkdir -p /var/www/wordpress # NEEDED?
 
 # change owner for wordpress dir to www-data
-RUN chomn -R www-data:www-data /var/www/wordpress
+# RUN chomn -R www-data:www-data /var/www/wordpress # NEEDED??
+
+EXPOSE 443
 
 # when the container starts for Nginx web server
 #   -g to apply additional configuration globaly
