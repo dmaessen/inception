@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # checking if mariadb is up and running before launching
 # netcat scans via the port to see if connection with mariadb database is open
