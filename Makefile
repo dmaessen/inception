@@ -1,7 +1,7 @@
 # must set up your entire application (i.e., it has to build the Docker images using
 # docker-compose.yml)
 
-DOCKER_COMPOSE_FILE = docker-compose.yml
+DOCKER_COMPOSE_FILE = ./srcs/docker-compose.yml
 DOCKER_COMPOSE = docker-compose -f $(DOCKER_COMPOSE_FILE)
 
 help:
@@ -16,6 +16,8 @@ help:
 	# @echo "  nginx-logs   View Nginx logs"
 	# @echo "  db-logs      View MariaDB logs"
 	# @echo "  wp-logs      View WordPress logs"
+	@echo "  list        Lists all containers"
+	@echo "  list_volumes        Lists all volumes"
 	@echo "  clean        Remove containers and volumes"
 	# @echo "  shell        Open a shell in the WordPress container"
 
@@ -35,9 +37,15 @@ build:
 logs:
 	$(DOCKER_COMPOSE) logs -f
 
+list:
+	docker ps -a
+
+list_volumes:
+	docker volume ls
+
 # removes all containers/volumes/images, --rmi all removes built images
 clean:
 	$(DOCKER_COMPOSE) down -v --rmi all
 
 
-.PHONY: help, up, down, restart, build, logs, clean
+.PHONY: help, up, down, restart, build, logs, list, list_volumes, clean
