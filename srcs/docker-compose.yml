@@ -8,7 +8,7 @@ networks:
 services:
   mariadb:
     container_name: mariadb
-    image: maridb
+    image: mariadb
     build:
       context: ./requirements/mariadb
     ports:
