@@ -24,7 +24,7 @@ RUN chown -R www-data:www-data /var/www/html
 # changes the cnf so that PHP-FPM listens on port 9000, making it possible for ngnix to communicate with PHP-FPM over the network
 RUN sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf
 
-COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+#COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 # create the folder to enable php start
 RUN mkdir /run/php
