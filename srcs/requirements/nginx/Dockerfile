@@ -17,7 +17,7 @@ RUN mkdir -p /etc/nginx/ssl
 #   req = required; 
 #   -x509 = the format of the public key and that should be self signed;
 #   -nodes = skips the encryption and leaves public key as plain text;
-RUN openssl req -x509 -nodes 
+RUN openssl req -x509 -nodes \
     -subj "/C=NL/ST=Noord Holland/L=Amsterdam/O=42/OU=42/CN=dmaessen.42.fr/UID=dmaessen" \ 
     -out /etc/nginx/ssl/inception.crt \
     -keyout /etc/nginx/ssl/inception.key
