@@ -29,7 +29,7 @@ restart:
 	$(DOCKER_COMPOSE) up -d
 
 build:
-	$(DOCKER COMPOSE) build
+	$(DOCKER_COMPOSE) build
 
 logs:
 	$(DOCKER_COMPOSE) logs -f
