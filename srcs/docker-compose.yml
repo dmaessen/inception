@@ -60,11 +60,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ./home/dmaessen/data/db # is this an issue??
+      device: ~./home/dmaessen/data/db # is this an issue??
       o: bind
   wp_data:
     driver: local
     driver_opts:
       type: none
-      device: home/dmaessen/data/wp # is this an issue??
+      device: ~./home/dmaessen/data/wp # is this an issue??
       o: bind
