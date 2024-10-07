@@ -1,5 +1,5 @@
 # pulls the base image, the penultimate stable now is bullseye - debian 11
-FROM debian: bullseye
+FROM debian:bullseye
 
 # defualt port of mariadb, the container listens on that port and is open to other containers only not host
 EXPOSE 3306

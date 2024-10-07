@@ -13,11 +13,8 @@ help:
 	@echo "  restart      Restart the Docker services"
 	@echo "  build        Build the Docker images"
 	@echo "  logs         View logs for all services"
-	# @echo "  nginx-logs   View Nginx logs"
-	# @echo "  db-logs      View MariaDB logs"
-	# @echo "  wp-logs      View WordPress logs"
-	@echo "  list        Lists all containers"
-	@echo "  list_volumes        Lists all volumes"
+	@echo "  list         Lists all containers"
+	@echo "  list_vol     Lists all volumes"
 	@echo "  clean        Remove containers and volumes"
 	# @echo "  shell        Open a shell in the WordPress container"
 
@@ -40,7 +37,7 @@ logs:
 list:
 	docker ps -a
 
-list_volumes:
+list_vol:
 	docker volume ls
 
 # removes all containers/volumes/images, --rmi all removes built images
