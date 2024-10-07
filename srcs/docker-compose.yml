@@ -60,11 +60,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ./home/dmaessen/data/db
+      device: home/dmaessen/data/db
       o: bind
   wp_data:
     driver: local
     driver_opts:
       type: none
-      device: ./home/dmaessen/data/wp
+      device: home/dmaessen/data/wp
       o: bind
