@@ -17,7 +17,7 @@ RUN apt-get install -y curl php php7.4 php7.4-fpm php7.4-mysql php7.4-redis mari
 # wp-cli installation, phar (PHP archive) from its github dir
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 # wp-cli permission
-RUN chmod +x wp-cli.pahr
+RUN chmod +x wp-cli.phar
 RUN mv wp-cli.par /usr/local/bin/wp
 RUN mkdir -p /var/www/html
 RUN chown -R www-data:www-data /var/www/html
