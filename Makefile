@@ -19,8 +19,7 @@ help:
 	@echo "  clean        Remove containers and volumes"
 	# @echo "  shell        Open a shell in the WordPress container"
 
-all:
-	install up
+all: install up
 
 up:
 	$(DOCKER_COMPOSE) up -d
