@@ -18,7 +18,7 @@ RUN apt-get install -y curl php php7.4 php7.4-fpm php7.4-mysql php7.4-redis mari
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 # wp-cli permission
 RUN chmod +x wp-cli.phar
-RUN mv wp-cli.phar /usr/local/bin/wp
+RUN mv ./wp-cli.phar /usr/local/bin/wp
 RUN mkdir -p /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 # changes the cnf so that PHP-FPM listens on port 9000, making it possible for ngnix to communicate with PHP-FPM over the network
@@ -27,7 +27,7 @@ RUN sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4
 #COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 # create the folder to enable php start
-RUN mkdir /run/php
+RUN mkdir -p /run/php
 
 # putting it at the root 
 COPY ./tools/create_wp.sh /create_wp.sh 
