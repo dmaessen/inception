@@ -6,6 +6,10 @@ EXPOSE 9000
 # default port for MySQL and mariadb database servers
 EXPOSE 3360
 
+# putting it at the root 
+COPY ./tools/create_wp.sh /create_wp.sh 
+RUN chmod +x /create_wp.sh
+
 RUN apt-get update -y && apt-get upgrade -y
 
 # installs all required packages
@@ -29,12 +33,8 @@ RUN sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4
 # create the folder to enable php start
 RUN mkdir -p /run/php
 
-# putting it at the root 
-COPY ./tools/create_wp.sh /create_wp.sh 
-RUN chmod +x /create_wp.sh
-
 WORKDIR /var/www/html
 
 ENTRYPOINT ["/create_wp.sh"]
 
-CMD ["/usr/sbin/php-fpm7.3", "-F"]
+CMD ["/usr/sbin/php-fpm7.4", "-F"]

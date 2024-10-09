@@ -11,13 +11,10 @@ ARG MDB_USER=${MDB_USER}
 ARG MDB_PASSWORD=${MDB_PASSWORD}
 ARG MDB_ROOT_PASSWORD=${MDB_ROOT_PASSWORD}
 
-RUN apt-get update
-
-# says yes to everything
-RUN apt-get upgrade -y
+RUN apt-get update && apt-get upgrade -y
 
 # installs all required packages
-RUN apt-get install mariadb-server mariadb-client -y
+RUN apt-get install -y mariadb-server mariadb-client
 
 RUN mkdir -p /var/log/mysql
 # or to /var/log/mysql ??

@@ -1,10 +1,9 @@
 # pulls the base image, the penultimate stable now is bullseye - debian 11
 FROM debian:bullseye
 
-RUN apt-get update
+EXPOSE 3000
 
-# says yes to everything
-RUN apt-get upgrade -y
+RUN apt-get update && apt-get upgrade -y
 
 # the package manager to install all required packages
 # openssl is a toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols 
@@ -22,14 +21,16 @@ RUN openssl req -x509 -nodes \
     -out /etc/nginx/ssl/inception.crt \
     -keyout /etc/nginx/ssl/inception.key
 
-COPY ./conf/nginx.conf /etc/nginx/nginx.d
-
-# RUN mkdir -p /var/www/wordpress # NEEDED?
-
 # change owner for wordpress dir to www-data
-# RUN chomn -R www-data:www-data /var/www/wordpress # NEEDED??
+RUN chmod 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod 777 /etc/nginx/ssl/ 
+RUN chown -R www-data:www-data /etc/nginx/ssl/
 
-EXPOSE 443
+# COPY ./conf/nginx.conf /etc/nginx/nginx.d
+COPY ./conf/nginx.conf /etc/nginx/sites-enabled/nginx.conf
+
+WORKDIR /var/www/html
 
 # when the container starts for Nginx web server
 #   -g to apply additional configuration globaly
