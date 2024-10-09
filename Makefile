@@ -53,6 +53,5 @@ clean:
 install:
 	@mkdir -p /home/dmaessen/data/db
 	@mkdir -p /home/dmaessen/data/wp
-	@mkdir -p /home/dmaessen/data/nginx
 
 .PHONY: help, all, up, down, stop, restart, build, logs, list, list_volumes, clean, install
