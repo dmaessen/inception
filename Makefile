@@ -19,10 +19,10 @@ help:
 	@echo "  clean        Remove containers and volumes"
 	# @echo "  shell        Open a shell in the WordPress container"
 
+all:
+	install up
+
 up:
-	@mkdir -p /home/dmaessen/data/db
-	@mkdir -p /home/dmaessen/data/wp
-	@mkdir -p /home/dmaessen/data/nginx
 	$(DOCKER_COMPOSE) up -d
 
 down:
@@ -51,5 +51,9 @@ list_vol:
 clean:
 	$(DOCKER_COMPOSE) down -v --rmi all
 
+install:
+	@mkdir -p /home/dmaessen/data/db
+	@mkdir -p /home/dmaessen/data/wp
+	@mkdir -p /home/dmaessen/data/nginx
 
-.PHONY: help, up, down, restart, build, logs, list, list_volumes, clean
+.PHONY: help, all, up, down, stop, restart, build, logs, list, list_volumes, clean, install
