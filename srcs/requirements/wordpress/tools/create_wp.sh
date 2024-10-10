@@ -2,10 +2,10 @@
 
 # checking if mariadb is up and running before launching
 # netcat scans via the port to see if connection with mariadb database is open
-while ! nc -zv mariadb 3306; do
-    echo "Waiting for MariaDB..." && sleep 5
-done
-echo "MariaDB is up!"
+# while ! nc -zv mariadb 3306; do
+#     echo "Waiting for MariaDB..." && sleep 5
+# done
+# echo "MariaDB is up!"
 
 # checking if wp-config.php exist
 if [ -f ./wp-config.php ]
