@@ -6,6 +6,21 @@ networks:
     driver: "bridge"
 
 
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: home/dmaessen/data/db # is this an issue??
+      o: bind
+  wp_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: home/dmaessen/data/wp # is this an issue??
+      o: bind
+
+
 services:
   mariadb:
     container_name: mariadb
@@ -72,18 +87,3 @@ services:
     env_file:
       - .env
     restart: unless-stopped
-
-
-volumes:
-  db_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: home/dmaessen/data/db # is this an issue??
-      o: bind
-  wp_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: home/dmaessen/data/wp # is this an issue??
-      o: bind
