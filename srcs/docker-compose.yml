@@ -14,7 +14,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - db_data:/var/lib/mysql
+      - home/dmaessen/data/db:/var/lib/mysql
     networks:
       - inception
     env_file:
@@ -35,7 +35,7 @@ services:
     build:
       context: requirements/wordpress
     volumes:
-      - wp_data:/var/www/html
+      - home/dmaessen/data/wp:/var/www/html
     networks:
       - inception
     env_file:
@@ -66,7 +66,7 @@ services:
     ports:
       - 443:443
     volumes:
-      - wp_data:/var/www/html
+      - home/dmaessen/data/wp:/var/www/html
     networks:
       - inception
     env_file:
