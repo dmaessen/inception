@@ -19,10 +19,17 @@ help:
 	@echo "  clean        Remove containers and volumes"
 	# @echo "  shell        Open a shell in the WordPress container"
 
-all: install up
+all: build up
+
+build:
+	cp srcs/.env_example srcs/.env
+	@mkdir -p /home/dmaessen/data
+	@mkdir -p /home/dmaessen/data/db
+	@mkdir -p /home/dmaessen/data/wp
+	$(DOCKER_COMPOSE) build
 
 up:
-	$(DOCKER_COMPOSE) up -d
+	$(DOCKER_COMPOSE) up --remove-orphans #-d
 
 down:
 	$(DOCKER_COMPOSE) down
@@ -30,9 +37,7 @@ down:
 stop:
 	$(DOCKER_COMPOSE) stop
 
-restart:
-	$(DOCKER_COMPOSE) down
-	$(DOCKER_COMPOSE) up -d
+restart: stop build up
 
 build:
 	$(DOCKER_COMPOSE) build
@@ -46,12 +51,18 @@ list:
 list_vol:
 	docker volume ls
 
+exec-mariadb:
+	docker exec -it mariadb bash
+
+exec-wp:
+	docker exec -it wordpress bash
+
+exec-nginx:
+	docker exec -it nginx bash
+
 # removes all containers/volumes/images, --rmi all removes built images
 clean:
 	$(DOCKER_COMPOSE) down -v --rmi all
 
-install:
-	@mkdir -p /home/dmaessen/data/db
-	@mkdir -p /home/dmaessen/data/wp
 
-.PHONY: help, all, up, down, stop, restart, build, logs, list, list_volumes, clean, install
+.PHONY: help, all, up, down, stop, restart, build, logs, list, list_volumes, clean, build
