@@ -17,6 +17,8 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - inception
+    env_file:
+      - .env
     environment:
       - MDB_HOST=${MDB_HOST}
       - MDB_NAME=${MDB_NAME}
@@ -36,6 +38,8 @@ services:
       - wp_data:/var/www/html
     networks:
       - inception
+    env_file:
+      - .env
     environment:
       - MDB_HOST=${MDB_HOST}
       - MDB_NAME=${MDB_NAME}
