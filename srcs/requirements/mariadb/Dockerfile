@@ -18,7 +18,7 @@ RUN apt-get install -y mariadb-server mariadb-client
 
 RUN mkdir -p /var/log/mysql
 # or to /var/log/mysql ??
-RUN chown -R mysql:root /var/lib/mysql
+RUN chown -R mysql:mysql /var/lib/mysql
 
 # RUN touch /var/log/mysql/error.log
 # RUN chown -R mysql:mysql /var/log/mysql/error.log
