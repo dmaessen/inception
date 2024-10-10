@@ -8,6 +8,8 @@ help:
 	@echo "Usage: make [COMMAND]"
 	@echo ""
 	@echo "Commands:"
+	@echo "  all          Sets up the project"
+	@echo "  build        Builds the required folders"
 	@echo "  up           Start the Docker services"
 	@echo "  down         Stop the Docker services"
 	@echo "  stop         Stop the Docker services"
@@ -17,7 +19,6 @@ help:
 	@echo "  list         Lists all containers"
 	@echo "  list_vol     Lists all volumes"
 	@echo "  clean        Remove containers and volumes"
-	# @echo "  shell        Open a shell in the WordPress container"
 
 all: build up
 
@@ -65,4 +66,4 @@ clean:
 	$(DOCKER_COMPOSE) down -v --rmi all
 
 
-.PHONY: help, all, up, down, stop, restart, build, logs, list, list_volumes, clean, build
+.PHONY: help, all, up, down, stop, restart, build, logs, list, list_volumes, clean
