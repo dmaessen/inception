@@ -40,9 +40,6 @@ stop:
 
 restart: stop build up
 
-build:
-	$(DOCKER_COMPOSE) build
-
 logs:
 	$(DOCKER_COMPOSE) logs -f
 
