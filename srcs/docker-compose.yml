@@ -4,23 +4,25 @@ version: '3.8'
 networks:
   inception:
     driver: "bridge"
-    external: false
 
 
 services:
   mariadb:
     container_name: mariadb
     image: mariadb
-    build:
-      context: ./requirements/mariadb
+    build: requirements/mariadb
     ports:
       - 3306:3306
     volumes:
-      - /home/dmaessen/data/db:/var/lib/mysql
+      - db_data:/var/lib/mysql
     networks:
       - inception
-    env_file:
-      - .env
+    environment:
+      - MDB_HOST=${MDB_HOST}
+      - MDB_NAME=${MDB_NAME}
+      - MDB_USER=${MDB_USER}
+      - MDB_PASSWORD=${MDB_PASSWORD}
+      - MDB_ROOT_PASSWORD=${MDB_ROOT_PASSWORD}
     restart: unless-stopped
 
   wordpress:
@@ -29,13 +31,25 @@ services:
     container_name: wordpress
     image: wordpress
     build:
-      context: ./requirements/wordpress
+      context: requirements/wordpress
     volumes:
-      - /home/dmaessen/data/wp:/var/www/html
+      - wp_data:/var/www/html
     networks:
       - inception
-    env_file:
-      - .env
+    environment:
+      - MDB_HOST=${MDB_HOST}
+      - MDB_NAME=${MDB_NAME}
+      - MDB_USER=${MDB_USER}
+      - MDB_PASSWORD=${MDB_PASSWORD}
+      - MDB_ROOT_PASSWORD=${MDB_ROOT_PASSWORD}
+      - WP_TITLE=${WP_TITLE}
+      - WP_ADMIN_USER=${WP_ADMIN_USER}
+      - WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD}
+      - WP_ADMIN_MAIL=${WP_ADMIN_MAIL}
+      - WP_USER=${WP_USER}
+      - WP_USER_PASSWORD=${WP_USER_PASSWORD}
+      - WP_USER_MAIL=${WP_USER_MAIL}
+      - WP_URL=${WP_URL}
     restart: unless-stopped
 
   nginx:
@@ -44,12 +58,11 @@ services:
     container_name: nginx
     image: nginx
     build:
-      context: ./requirements/nginx
+      context: requirements/nginx
     ports:
-      - 443:443
+      - "443:443"
     volumes:
-      - ./requirements/nginx/conf/nginx.conf:/etc/nginx/nginx.conf #THIS IS WRONG I BELIEVE
-      - /home/dmaessen/data/wp:/var/www/html
+      - wp_data:/var/www/html
     networks:
       - inception
     env_file:
@@ -62,11 +75,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/dmaessen/data/db # is this an issue??
+      device: ${HOME}/data/db # is this an issue??
       o: bind
   wp_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/dmaessen/data/wp # is this an issue??
+      device: ${HOME}/data/wp # is this an issue??
       o: bind
