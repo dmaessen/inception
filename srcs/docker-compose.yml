@@ -64,7 +64,7 @@ services:
     build:
       context: requirements/nginx
     ports:
-      - "443:443"
+      - 443:443
     volumes:
       - wp_data:/var/www/html
     networks:
@@ -79,11 +79,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ${HOME}/data/db # is this an issue??
+      device: home/dmaessen/data/db # is this an issue??
       o: bind
   wp_data:
     driver: local
     driver_opts:
       type: none
-      device: ${HOME}/data/wp # is this an issue??
+      device: home/dmaessen/data/wp # is this an issue??
       o: bind

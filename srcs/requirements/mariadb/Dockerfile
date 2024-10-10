@@ -5,11 +5,11 @@ FROM debian:bullseye
 EXPOSE 3306
 
 #ARG makes it available only during the image buidl process and cannot be accessed after the image is built
-ARG MDB_HOST=${MDB_HOST}
-ARG MDB_NAME=${MDB_NAME}
-ARG MDB_USER=${MDB_USER}
-ARG MDB_PASSWORD=${MDB_PASSWORD}
-ARG MDB_ROOT_PASSWORD=${MDB_ROOT_PASSWORD}
+ENV MDB_HOST=${MDB_HOST}
+ENV MDB_NAME=${MDB_NAME}
+ENV MDB_USER=${MDB_USER}
+ENV MDB_PASSWORD=${MDB_PASSWORD}
+ENV MDB_ROOT_PASSWORD=${MDB_ROOT_PASSWORD}
 
 RUN apt-get update && apt-get upgrade -y
 
@@ -37,4 +37,4 @@ WORKDIR /var/lib/mysql
 
 ENTRYPOINT ["/create_mdb.sh"]
 
-CMD ["mysqld_safe"]
+#CMD ["mysqld_safe"]
