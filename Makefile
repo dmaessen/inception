@@ -23,7 +23,7 @@ help:
 all: build up
 
 build:
-	cp srcs/.env_example srcs/.env
+	cat srcs/.env_example > srcs/.env
 	@mkdir -p /home/dmaessen/data
 	@mkdir -p /home/dmaessen/data/db
 	@mkdir -p /home/dmaessen/data/wp
