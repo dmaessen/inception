@@ -27,6 +27,7 @@ build:
 	@mkdir -p /home/dmaessen/data
 	@mkdir -p /home/dmaessen/data/db
 	@mkdir -p /home/dmaessen/data/wp
+	@echo $(DOCKER_COMPOSE)
 	$(DOCKER_COMPOSE) build
 
 up:
