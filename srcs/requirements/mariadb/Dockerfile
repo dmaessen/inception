@@ -17,7 +17,7 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y mariadb-server mariadb-client
 
 RUN mkdir -p /var/log/mysql /var/lib/mysql
-# or to /var/log/mysql ??
+RUN groupadd -r mysql mysql && useradd -r -g mysql mysql
 RUN chown -R mysql:mysql /var/lib/mysql /var/log/mysql
 
 # RUN touch /var/log/mysql/error.log
