@@ -33,8 +33,9 @@ COPY ./tools/create_mdb.sh /create_mdb.sh
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN chmod +x /create_mdb.sh
 
+USER mysql
 WORKDIR /var/lib/mysql
 
 ENTRYPOINT ["/create_mdb.sh"]
 
-#CMD ["mysqld_safe"]
+CMD ["mysqld_safe"]
