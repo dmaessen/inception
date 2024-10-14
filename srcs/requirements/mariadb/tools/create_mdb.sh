@@ -5,7 +5,7 @@ if [ ! -d "/var/lib/mysql/$MDB_NAME" ]; then
     # mariadb-install-db --user=mysql --datadir=/var/lib/mysl --skip-test-db --skip-name-resolve --auth-root-authentication-method=normal
 
     # starts mariadb service temporarly to create the database and user
-    service mysql start
+    service mariadb start
 
     # passes argument as string, grants full access (SELECT/INSERT/UPDATE/DEL..) on all databases/tables
     mysql -e "
@@ -15,7 +15,7 @@ if [ ! -d "/var/lib/mysql/$MDB_NAME" ]; then
         GRANT ALL PRIVILEGES ON *.* TO '$MDB_USER'@'%' IDENTIFIED BY '$MDB_PASSWORD';
         FLUSH PRIVILEGES;
     "
-    service mysql stop
+    service mariadb stop
     # mysqladmin -u root -p$MDB_ROOT_PASSWORD shutdown
 
 fi
