@@ -1,7 +1,7 @@
 # pulls the base image, the penultimate stable now is bullseye - debian 11
 FROM debian:bullseye
 
-EXPOSE 3000
+#EXPOSE 3000
 
 RUN apt-get update && apt-get upgrade -y
 
