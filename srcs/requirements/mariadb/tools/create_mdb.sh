@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 # checks if databases exisits and creates it if it doesn't
 if [ ! -d "/var/lib/mysql/$MDB_NAME" ]; then
