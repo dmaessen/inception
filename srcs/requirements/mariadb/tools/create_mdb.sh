@@ -16,7 +16,7 @@ if [ ! -d "/var/lib/mysql/$MDB_NAME" ]; then
         FLUSH PRIVILEGES;
     "
     # service mariadb stop
-    mysqladmin -u root -p$SQL_ROOT_PASSWORD shutdown
+    mysqladmin -u root -p$MDB_ROOT_PASSWORD shutdown
 
 fi
 
