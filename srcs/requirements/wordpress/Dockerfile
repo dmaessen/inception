@@ -4,7 +4,7 @@ FROM debian:bullseye
 # connection for PHP-FPM/Nginx
 EXPOSE 9000
 # default port for MySQL and mariadb database servers
-EXPOSE 3306
+# EXPOSE 3306
 
 # putting it at the root 
 COPY ./tools/create_wp.sh /create_wp.sh 
