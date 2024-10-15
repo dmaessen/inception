@@ -8,7 +8,7 @@ chmod 755 /var/lib/mysql /run/mysqld
 # Initialize the database if it doesn't exist
 if [ ! -d "/var/lib/mysql/mysql" ]; then
     echo "Initializing MariaDB system tables..."
-    mariadb-install-db --user=mysql --datadir=/var/lib/mysql --auth-root-authentication-method=normal --verbose
+    mariadb-install-db --user=mysql --datadir=/var/lib/mysql -skip-show-database --auth-root-authentication-method=normal --verbose
 
     echo "Checking directory permissions..."
     ls -ld /var/lib/mysql /var/log/mysql /run/mysqld
