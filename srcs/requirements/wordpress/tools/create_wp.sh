@@ -7,10 +7,10 @@ while ! nc -zv mariadb 3306; do
 done
 echo "MariaDB is up!"
 
-# checking if wp-config.php exist
-# if [ -f ./wp-config.php ]; then
-#     echo "WordPress already downloaded!"
-# else
+checking if wp-config.php exist
+if [ -f ./wp-config.php ]; then
+    echo "WordPress already downloaded!"
+else
     # downloads wordpress core files
     wp core download --allow-root
     # creates wp-config.php file with the database details
