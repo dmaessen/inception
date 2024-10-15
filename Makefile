@@ -9,7 +9,7 @@ help:
 	@echo ""
 	@echo "Commands:"
 	@echo "  all          Sets up the project"
-	@echo "  build        Builds the required folders"
+	@echo "  build        Builds the containers"
 	@echo "  up           Start the Docker services"
 	@echo "  down         Stop the Docker services"
 	@echo "  stop         Stop the Docker services"
