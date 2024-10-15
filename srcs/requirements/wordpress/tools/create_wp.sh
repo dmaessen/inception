@@ -8,9 +8,9 @@ done
 echo "MariaDB is up!"
 
 # checking if wp-config.php exist
-# if [ -f ./wp-config.php ]; then
-#     echo "WordPress already downloaded!"
-# else
+if [ -f ./wp-config.php ]; then
+    echo "WordPress already downloaded!"
+else
     # downloads wordpress core files
     wp core download --allow-root
     # creates wp-config.php file with the database details
@@ -20,7 +20,7 @@ echo "MariaDB is up!"
     wp user create "$WP_USER" "$WP_USER_MAIL" --user_pass="$WP_USER_PASSWORD" --allow-root
 
     echo "WordPress configured!"
-# fi
+fi
 
 # (CMD from dockerfile) start php-fpm service in the foreground to keep the container running
 exec "$@"
