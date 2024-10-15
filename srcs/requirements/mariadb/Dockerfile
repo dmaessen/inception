@@ -27,6 +27,9 @@ RUN mkdir -p /run/mysqld
 RUN chown -R mysql:mysql /run/mysqld
 RUN chmod 755 /run/mysqld
 
+#needed?
+RUN rm -f /etc/mysql/my.cnf /etc/mysql/mariadb.cnf
+
 # RUN touch /var/log/mysql/error.log
 # RUN chown -R mysql:mysql /var/log/mysql/error.log
 # RUN chmod 777 /var/log/mysql/error.log
