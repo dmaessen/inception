@@ -20,6 +20,7 @@ RUN mkdir -p /var/log/mysql /var/lib/mysql
 RUN getent group mysql || groupadd -r mysql && \
     getent passwd mysql || useradd -r -g mysql mysql
 RUN chown -R mysql:mysql /var/lib/mysql /var/log/mysql
+RUN chmod 755 /var/lib/mysql
 
 RUN mkdir -p /run/mysqld
 RUN chown -R mysql:mysql /run/mysqld
