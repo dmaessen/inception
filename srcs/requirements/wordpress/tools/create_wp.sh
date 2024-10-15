@@ -20,7 +20,7 @@ else
     wp user create "$WP_USER" "$WP_USER_MAIL" --user_pass="$WP_USER_PASSWORD" --allow-root
 
     echo "WordPress configured!"
-# fi
+fi
 
 # (CMD from dockerfile) start php-fpm service in the foreground to keep the container running
 exec "$@"
