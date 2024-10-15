@@ -1,27 +1,34 @@
 #!/bin/bash
 
-# checks if databases exisits and creates it if it doesn't
+# Setup the /run/mysqld directory
+mkdir -p /run/mysqld
+chown -R mysql:mysql /run/mysqld
+chmod 755 /run/mysqld
+
+# Check if the database exists and create it if it doesn't
 if [ ! -d "/var/lib/mysql/$MDB_NAME" ]; then
     mariadb-install-db --user=mysql --datadir=/var/lib/mysql --skip-test-db --skip-name-resolve --auth-root-authentication-method=normal
-
-    # starts mariadb service temporarly to create the database and user
+    
+    # Start MariaDB temporarily
     service mariadb start
 
-    # passes argument as string, grants full access (SELECT/INSERT/UPDATE/DEL..) on all databases/tables
+    # Create the database and user
     mysql -e "
         CREATE DATABASE IF NOT EXISTS $MDB_NAME;
         CREATE USER IF NOT EXISTS '$MDB_USER'@'%' IDENTIFIED BY '$MDB_PASSWORD';
-        ALTER USER '$MDB_USER'@'%' IDENTIFIED BY '$MDB_PASSWORD';
-        GRANT ALL PRIVILEGES ON *.* TO '$MDB_USER'@'%' IDENTIFIED BY '$MDB_PASSWORD';
+        GRANT ALL PRIVILEGES ON *.* TO '$MDB_USER'@'%';
         FLUSH PRIVILEGES;
     "
-    service mariadb stop
-    # mysqladmin -u root -p$MDB_ROOT_PASSWORD shutdown
 
+    # Stop MariaDB
+    service mariadb stop
 fi
 
-echo "MariaDB is ready!";
-exec "$@"
+echo "MariaDB is ready!"
+
+# Switch to mysql user and start the server
+exec gosu mysql "$@"
+
 
 
 

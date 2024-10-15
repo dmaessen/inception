@@ -15,6 +15,7 @@ RUN apt-get update && apt-get upgrade -y
 
 # installs all required packages
 RUN apt-get install -y mariadb-server mariadb-client
+RUN apt-get update && apt-get install -y gosu
 
 RUN mkdir -p /var/log/mysql /var/lib/mysql
 RUN getent group mysql || groupadd -r mysql && \
@@ -39,7 +40,7 @@ COPY ./tools/create_mdb.sh /create_mdb.sh
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN chmod +x /create_mdb.sh
 
-USER mysql
+#USER mysql
 WORKDIR /var/lib/mysql
 
 ENTRYPOINT ["/create_mdb.sh"]
