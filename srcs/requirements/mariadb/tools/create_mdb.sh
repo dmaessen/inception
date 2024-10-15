@@ -1,12 +1,9 @@
 #!/bin/bash
 
-mkdir -p /run/mysqld
-chown -R mysql:mysql /run/mysqld
-chmod 755 /run/mysqld
-
 # checks if databases exisits and creates it if it doesn't
 if [ ! -d "/var/lib/mysql/$MDB_NAME" ]; then
     # mariadb-install-db --user=mysql --datadir=/var/lib/mysl --skip-test-db --skip-name-resolve --auth-root-authentication-method=normal
+    mariadb-install-db --datadir=/var/lib/mysl --skip-test-db --skip-name-resolve --auth-root-authentication-method=normal
 
     # starts mariadb service temporarly to create the database and user
     service mariadb start
