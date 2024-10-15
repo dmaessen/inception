@@ -21,9 +21,9 @@ RUN getent group mysql || groupadd -r mysql && \
     getent passwd mysql || useradd -r -g mysql mysql
 RUN chown -R mysql:mysql /var/lib/mysql /var/log/mysql
 
-RUN mkdir -p /run/mysqld \
-    chown -R mysql:mysql /run/mysqld \
-    chmod 755 /run/mysqld
+RUN mkdir -p /run/mysqld
+RUN chown -R mysql:mysql /run/mysqld
+RUN chmod 755 /run/mysqld
 
 # RUN touch /var/log/mysql/error.log
 # RUN chown -R mysql:mysql /var/log/mysql/error.log
