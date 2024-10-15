@@ -70,4 +70,4 @@ clean:
 	$(DOCKER_COMPOSE) down -v --rmi all
 
 
-.PHONY: help, all, up, down, stop, restart, build, logs, list, list_volumes, clean, certif, protocol
+.PHONY: help, all, up, down, stop, restart, build, logs, list, list_vol, clean, certif, protocol
