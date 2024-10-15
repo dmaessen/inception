@@ -50,6 +50,12 @@ list:
 list_vol:
 	docker volume ls
 
+certif:
+	openssl x509 -in /etc/ssl/certs/ca-certificates.crt -text --noout
+
+protocol:
+	curl -v --tlsv1.3 https://dmaessen.42.fr
+
 exec-mariadb:
 	docker exec -it mariadb bash
 
