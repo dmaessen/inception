@@ -7,7 +7,7 @@ while ! nc -zv mariadb 3306; do
 done
 echo "MariaDB is up!"
 
-checking if wp-config.php exist
+#checking if wp-config.php exist
 if [ -f ./wp-config.php ]; then
     echo "WordPress already downloaded!"
 else
