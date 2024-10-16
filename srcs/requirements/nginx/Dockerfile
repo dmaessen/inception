@@ -1,8 +1,6 @@
 # pulls the base image, the penultimate stable now is bullseye - debian 11
 FROM debian:bullseye
 
-#EXPOSE 3000
-
 RUN apt-get update && apt-get upgrade -y
 
 # the package manager to install all required packages
@@ -27,7 +25,6 @@ RUN chown -R www-data:www-data /var/www/html
 RUN chmod 777 /etc/nginx/ssl/ 
 RUN chown -R www-data:www-data /etc/nginx/ssl/
 
-# COPY ./conf/nginx.conf /etc/nginx/nginx.d
 COPY ./conf/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
 WORKDIR /var/www/html

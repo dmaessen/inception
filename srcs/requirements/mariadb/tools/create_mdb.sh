@@ -32,25 +32,3 @@ fi
 
 echo "MariaDB is ready!"
 exec gosu mysql "$@"
-
-
-
-
-
-# Check if the specified database (defined in .env) directory exists
-# if [ -d "/var/lib/mysql/$MDB_NAME" ]; then 
-#     echo "Database already exists"
-# else
-#     {
-#         echo "FLUSH PRIVILEGES;"
-#         echo "CREATE DATABASE IF NOT EXISTS $MDB_NAME;"
-#         echo "CREATE USER IF NOT EXISTS $MDB_USER@'%' IDENTIFIED BY '$MDB_PASS';"
-#         echo "GRANT ALL ON *.* TO $MDB_USER@'%' IDENTIFIED BY '$MDB_PASS';"
-#         echo "FLUSH PRIVILEGES;"
-#     } | mysqld --bootstrap
-# fi
-
-# echo "executing mysql daemon"
-# exec mysqld_safe
-# # using exec allows child processes to recieve the sigterm from docker stop,
-# allowing for clean shutdowns
